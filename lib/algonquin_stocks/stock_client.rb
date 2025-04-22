@@ -1,47 +1,45 @@
 require 'rest-client'
 require 'json'
-require 'date'
 
-module Stocks
-
-  # => Stocks::StockClient
+module AlgonquinStocks
+  # => AlgonquinStocks::StockClient
   #
   # @param api_key [String] The API key for Alpha Vantage.
-  # @return [Stocks::StockClient] The stock client object.
+  # @return [AlgonquinStocks::StockClient] The stock client object.
   class StockClient
     URL_BASE = "https://www.alphavantage.co/query"
     FUNCTION = "GLOBAL_QUOTE"
 
-    # => Stocks::StockClient#initialize
+    # => AlgonquinStocks::StockClient#initialize
     #
     # @param api_key [String] The API key for Alpha Vantage.
-    # @return [Stocks::StockClient] The stock client object.
+    # @return [AlgonquinStocks::StockClient] The stock client object.
     def initialize(api_key)
       @api_key = api_key
       @url = "#{URL_BASE}?apikey=#{@api_key}"
     end
 
-    # => Stocks::StockClient#data
+    # => AlgonquinStocks::StockClient#data
     #
     # @param symbol [String] The symbol of the stock.
     # @param function [String] The function to use.
     # @return [Hash] The JSON response from Alpha Vantage.
     def data(symbol, function=FUNCTION)
       url = "#{@url}&function=#{function}&symbol=#{symbol}"
-      RestClient::Request.execute(url: url, method: :get, verify_ssl: false) do |response|
+      RestClient::Request.execute url: url, method: :get, verify_ssl: false do |response|
         raise response.body unless response.code == 200
-        JSON.parse(response.body)
+        JSON.parse response.body
       end
     end
 
-    # => Stocks::StockClient#quote
+    # => AlgonquinStocks::StockClient#quote
     #
     # @param symbol [String] The symbol of the stock.
     # @param function [String] The function to use.
-    # @return [Stocks::Stock] The stock object.
+    # @return [AlgonquinStocks::Stock] The stock object.
     def quote(symbol, function=FUNCTION)
-      json = data(symbol, function)
-      Stock.new(json['Global Quote'])
+      json = data symbol, function
+      Stock.new json['Global Quote']
     end
   end
 end

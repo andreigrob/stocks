@@ -1,32 +1,31 @@
-# Stocks
+# AlgonquinStocks
 
 Stock data provided by [Alpha Vantage](https://www.alphavantage.co/). An [API KEY](https://www.alphavantage.co/support/#api-key) is required.
 
 ## Installation
 
-To install the 'stocks' ruby gem:
+To install the 'algonquin_stocks' ruby gem:
 
-`gem install stocks`
+`gem install algonquin_stocks`
 
 ## Gem Configuration
 
 To use the gem in your Rails Application, include it in your Gemfile:
 
-`gem "stocks"`, '~> 1.0.0'
-
+`gem "algonquin_stocks", "~> 1.5.0"`
 
 ## Initialization
 
-To initialize Stocks with a valid API_KEY:
+To initialize AlgonquinStocks with a valid API_KEY:
 
-`Stocks::Stock.new(api_key: YOUR_API_KEY)`
+`AlgonquinStocks::StockClient.new YOUR_API_KEY`
 
 
 ## Usage
 
-### Stocks::StockClient.quote(symbol)
+### AlgonquinStocks::StockClient#quote(symbol)
 
-Quote is the primary method, returning a Stocks::Stock instance including the following attributes:
+Quote is the primary method, returning a AlgonquinStocks::Stock instance including the following attributes:
 
 - symbol
 - open
@@ -40,19 +39,19 @@ Quote is the primary method, returning a Stocks::Stock instance including the fo
 - percent
 
 
-### Stocks::StockClient.data(symbol)
+### AlgonquinStocks::StockClient#data(symbol)
 
-Data returns a hash representation of JSON the data.
+Data returns a hash representation of the JSON data.
 
 
-### Stocks::Stock.new(json)
+### AlgonquinStocks::Stock.new(json)
 
-Stock.new(json) initializes a new Stocks::Stock instance with the given JSON data.
+Stock.new(json) initializes a new AlgonquinStocks::Stock instance with the given JSON data.
 
-### Stocks::Stock#update(json)
+### AlgonquinStocks::Stock#update(json)
 
-Update updates the Stocks::Stock instance with the given JSON data.
+Update updates the AlgonquinStocks::Stock instance with the given JSON data.
 
-### Stocks::Stock#to_s
+### AlgonquinStocks::Stock#to_s
 
-to_s returns a string representation of the Stocks::Stock instance.
+to_s returns a string representation of the AlgonquinStocks::Stock instance.
