@@ -7,8 +7,9 @@ Gem::Specification.new do |spec|
   spec.version = Stocks::VERSION
   spec.authors = ["Andrei Grobnic"]
   spec.email = ["grobnia@algonquincollege.com"]
+  spec.license = "GPL-2.0"
 
-  spec.summary = "A gem for managing stocks"
+  spec.summary = "Stocks"
   spec.description = "A gem for managing stocks"
   spec.homepage = "https://github.com/andreigrob/stocks"
   spec.required_ruby_version = ">= 3.1.0"
