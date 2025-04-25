@@ -12,14 +12,15 @@ To install the 'algonquin_stocks' ruby gem:
 
 To use the gem in your Rails Application, include it in your Gemfile:
 
-`gem "algonquin_stocks", "~> 1.5.0"`
+`gem "algonquin_stocks", "~> 2.1.0"`
 
 ## Initialization
 
 To initialize AlgonquinStocks with a valid API_KEY:
 
-`AlgonquinStocks::StockClient.new YOUR_API_KEY`
+`AlgonquinStocks::StockClient.new YOUR_API_KEY, CACHE`
 
+CACHE is optional and defaults to false.  If set to true, the gem will cache the stock data in a SQLite database.
 
 ## Usage
 
@@ -37,6 +38,7 @@ Quote is the primary method, returning a AlgonquinStocks::Stock instance includi
 - close
 - change
 - percent
+- data
 
 
 ### AlgonquinStocks::StockClient#data(symbol)
